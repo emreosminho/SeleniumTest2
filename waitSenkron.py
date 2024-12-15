@@ -2,6 +2,7 @@ import time
 from selenium import webdriver
 from selenium.common import NoSuchElementException
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -14,9 +15,13 @@ driver.get("https://pynishant.github.io/Selenium-python-waits.html")
 
 tryit = driver.find_element(By.XPATH, "//button[contains(text(), 'Try it')]").click()
 
-WebDriverWait(driver, 45, 0.1, ignored_exceptions=[NoSuchElementException]).until(expected_conditions.presence_of_element_located((By.XPATH, "//button[contains(text(), 'CLICK ME')]")))
+WebDriverWait(driver, 45).until(expected_conditions.presence_of_element_located((By.XPATH, "//button[contains(text(), 'CLICK ME')]")))
 
 clickme = driver.find_element(By.XPATH, "//button[contains(text(), 'CLICK ME')]")
+time.sleep(5)
+
+alert = Alert(driver)
+alert.accept()
 
 #presence ve visibility
 #implicit wait
@@ -24,4 +29,4 @@ clickme = driver.find_element(By.XPATH, "//button[contains(text(), 'CLICK ME')]"
 #url_cahange
 #ignored_exceptions gormezden geleceği exceptionlar
 
-driver.quit()
+time.sleep(10)  # Tarayıcıyı 10 saniye açık tutar
